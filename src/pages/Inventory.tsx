@@ -2,8 +2,9 @@ import { useState, useMemo } from 'react';
 import { Search, Filter, ArrowUpDown, Download, Plus, Package, ChevronUp, ChevronDown } from 'lucide-react';
 import { Card } from '../components/Card';
 import { Badge } from '../components/Badge';
+import { useMedicinesRealtime } from '../hooks/useMedicinesRealtime';
+import type { Medicine } from '../lib/mockData';
 import { Modal } from '../components/Modal';
-import { medicines, type Medicine } from '../lib/mockData';
 import { cn, formatDate, daysUntilExpiry } from '../lib/utils';
 import toast from 'react-hot-toast';
 
@@ -19,8 +20,9 @@ export default function Inventory() {
   const [selectedMed, setSelectedMed] = useState<Medicine | null>(null);
   const [page, setPage] = useState(1);
   const perPage = 8;
+  const { medicines, loading } = useMedicinesRealtime();
 
-  const categories = useMemo(() => ['all', ...Array.from(new Set(medicines.map(m => m.category)))], []);
+  const categories = useMemo(() => ['all', ...Array.from(new Set(medicines.map(m => m.category)))], [medicines]);
 
   const filtered = useMemo(() => {
     let data = [...medicines];
