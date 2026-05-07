@@ -42,6 +42,6 @@ YOUR_PROFILE → your LinkedIn profile URL
 
 your-portfolio.com → your portfolio website
 
-[🚀 Live Demo](#) → paste your actual Vercel URL
+[🚀 Live Demo](#) → http://localhost:5174/
 
 
